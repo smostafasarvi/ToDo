@@ -12,7 +12,7 @@ const addTask = (setTasks, tasksTitle) => {
     let newTasks = [...prevTasks];
     if (tasksTitle.current.value != "") {
       newTasks.push({
-        id: newTasks[newTasks.length - 1].id + 1,
+        id: newTasks.length > 0 ? newTasks[newTasks.length - 1].id + 1 : 0,
         title: tasksTitle.current.value,
         state: false,
       });
@@ -82,7 +82,7 @@ function ToDoInput() {
               <span className="badge">{tasks.length}</span>
             </div>
             <div>
-              <span className="doneTasks">Tasks Done</span>
+              <span className="doneTasks">Done</span>
               <span className="badge">{`${doneCount} of ${tasks.length}`}</span>
               ;
             </div>
