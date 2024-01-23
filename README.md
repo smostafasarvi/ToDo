@@ -1,8 +1,23 @@
-# React + Vite
+# ✔️ A Minimal ToDo List Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+⚠️ It Will Develop More Soon
 
-Currently, two official plugins are available:
+### to clone the repo you can use 👇
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```shell
+$ git clone https://github.com/mostafasarvi2004/ToDo.git
+```
+
+### to run the project you can execute codes below
+
+```shell
+$ npm install .
+$ npm run dev
+```
+
+# ToDo Lists For Project:
+
+- [ ] Add a backend to project for saving the tasks
+  - [ ] Create a SignUp page for project
+  - [ ] Create a SignIn page for project
+  - [ ] Create a backend server page for project
