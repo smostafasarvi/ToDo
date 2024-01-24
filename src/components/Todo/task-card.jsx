@@ -1,37 +1,30 @@
-import { tasksUpdateContext } from "../../contexts";
+import { useContext } from "react";
+import { TODO_ACTIONS } from "./reducer";
 import { ReactComponent as CheckIcon } from "/src/images/check.svg";
 import { ReactComponent as TrashIcon } from "/src/images/trash.svg";
-
-import { useContext } from "react";
+import { TodoReducerContext } from "./todoReducer.context";
 
 function Task({ task }) {
-  const updateTasks = useContext(tasksUpdateContext);
+  const todoDispatch = useContext(TodoReducerContext);
 
   const taskChangeState = (e) => {
-    updateTasks((prevTasks) => {
-      const newTasks = [...prevTasks];
-      e.target.checked
-        ? e.target.removeAttribute("checked")
-        : e.target.setAttribute("checked", "checked");
-      newTasks[e.target.id].state = !newTasks[e.target.id].state;
-      return newTasks;
+    e.target.checked
+      ? e.target.removeAttribute("checked")
+      : e.target.setAttribute("checked", "checked");
+
+    todoDispatch({
+      type: TODO_ACTIONS.TOGGLE_STATE,
+      payload: { id: e.target.id },
     });
   };
 
   const deleteTask = (e) => {
-    const element = e.target.parentElement;
+    let element = e.target;
+    while (!element.classList.contains("taskDelete")) {
+      element = element.parentElement;
+    }
 
-    updateTasks((prevTasks) => {
-      let newTasks = [...prevTasks];
-      let index = -1;
-      for (let i = 0; i < newTasks.length; i++) {
-        if (newTasks[i].id == element.id) {
-          index = i;
-        }
-      }
-      newTasks.splice(index, 1);
-      return newTasks;
-    });
+    todoDispatch({ type: TODO_ACTIONS.REMOVE, payload: { id: element.id } });
   };
 
   return (
