@@ -1,4 +1,4 @@
-import { useState, useEffect, useReducer } from "react";
+import { useState, useEffect } from "react";
 
 import Task from "./task-card";
 
@@ -6,9 +6,10 @@ import { ReactComponent as PlusIcon } from "/src/images/plus-icon.svg";
 import { ReactComponent as ClipboardIcon } from "/src/images/clipboard-icon.svg";
 import { TodoReducer, TODO_ACTIONS } from "./reducer";
 import { TodoReducerContext } from "./todoReducer.context";
+import { useLocalStorage } from "./useLocalStorageHook";
 
 function ToDoInput() {
-  const [tasks, dispatch] = useReducer(TodoReducer, []);
+  const [tasks, dispatch] = useLocalStorage("Tasks", TodoReducer, []);
   const [taskTitle, setTaskTitle] = useState("");
   const [doneCount, setDoneCount] = useState(0);
 
